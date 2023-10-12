@@ -1,0 +1,17 @@
+service: cross-account-lambda-invocation
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+functions:
+  invokeTargetLambda:
+    handler: handler.invokeTargetLambda
+    role: arn:aws:iam::8171937381719373:role/your-role 
+
+  apiGateway:
+    handler: index.handler
+    events:
+      - http:
+          path: invoke
+          method: post
